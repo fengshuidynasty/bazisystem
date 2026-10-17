@@ -126,111 +126,171 @@ export const INITIAL_CLIENTS: ClientProfile[] = [
 export const INITIAL_KNOWLEDGE_ENTRIES: KnowledgeEntry[] = [
   {
     id: 'kb_tujie_01',
-    bookTitle: '《图解八字》',
-    chapter: '第三章：旺衰派日主强弱评定',
+    bookTitle: '《图解八字》（子平八字资料.pdf）',
+    chapter: '卷一·第三章：旺衰派日主强弱评定',
     sourcePage: 68,
     ruleCategory: '旺衰篇',
     ruleTitle: '八分辅助精算权重总纲',
-    content: '月令当权，得令为先。月支占总分之四成，日支得气次之，天干各得其位。八分法以四分为中和基准，同党（印比）低于四分者为身弱，当以印星相生、比劫相助为用神。',
+    content: '月令当权，得令为先。月支占总分之四成（40%），日支得气占二成（20%），天干年时各占其余。八分法以四分为中和基准，同党（印星、比劫）低于四分者判定为身弱，当以印星相生、比劫相助为核心用神。',
     approvalStatus: 'approved',
     approvedBy: '赵天佑师傅',
-    updatedAt: '2025-05-12'
+    updatedAt: '2026-10-17'
   },
   {
     id: 'kb_tujie_02',
-    bookTitle: '《图解八字》',
-    chapter: '第五章：十神配置与取格',
-    sourcePage: 112,
+    bookTitle: '《图解八字》（子平八字资料.pdf）',
+    chapter: '卷一·第二章：天干地支相生相克与刑冲会合',
+    sourcePage: 48,
+    ruleCategory: '旺衰篇',
+    ruleTitle: '天干五合与地支三合局气机转化法则',
+    content: '天干五合有化与不化之分，必观月令气势与地支化神。地支三合申子辰水局、亥卯未木局、寅午戌火局、巳酉丑金局，汇聚长生、帝旺、墓库三元之气，合化成局则五行气势专一，克耗转化神速。',
+    approvalStatus: 'approved',
+    approvedBy: '赵天佑师傅',
+    updatedAt: '2026-10-17'
+  },
+  {
+    id: 'kb_tujie_03',
+    bookTitle: '《图解八字》（子平八字资料.pdf）',
+    chapter: '卷一·第三章：节气深浅与月令分日用事',
+    sourcePage: 54,
+    ruleCategory: '旺衰篇',
+    ruleTitle: '月令提纲主事与得气深浅分界',
+    content: '月令乃八字之提纲，如人君之执政。申月立秋之后，前七日戊土余气当权，次七日壬水长生引动，后十六日庚金正气专令。查知日主生于节气后第几日，方能精准厘定八分强弱与纳音气机。',
+    approvalStatus: 'approved',
+    approvedBy: '赵天佑师傅',
+    updatedAt: '2026-10-17'
+  },
+  {
+    id: 'kb_tujie_04',
+    bookTitle: '《图解八字》（子平八字资料.pdf）',
+    chapter: '卷二·第五章：六十甲子纳音五行与夫妻六亲纳音互化',
+    sourcePage: 96,
+    ruleCategory: '十神篇',
+    ruleTitle: '六十甲子纳音五行与年日互配机要',
+    content: '干禄为天，支命为地，纳音为人。庚午辛未路旁土、壬申癸酉剑锋金、甲戌乙亥山头火。纳音五行互为表里，天干克而纳音生者，表凶而实吉；日柱纳音与配偶年命相生者，夫妻情深谊长，家道昌盛。',
+    approvalStatus: 'approved',
+    approvedBy: '赵天佑师傅',
+    updatedAt: '2026-10-17'
+  },
+  {
+    id: 'kb_tujie_05',
+    bookTitle: '《图解八字》（子平八字资料.pdf）',
+    chapter: '卷二·第六章：吉神凶煞吉凶断验',
+    sourcePage: 108,
+    ruleCategory: '十神篇',
+    ruleTitle: '天乙贵人与文昌贵人化煞显贵法则',
+    content: '天乙贵人乃后天至尊之吉神，丙丁猪鸡位，壬癸兔蛇藏。凡四柱带天乙者，遇危难自有贵人解救。文昌贵人主文思泉涌、考试升学与高端学术专长；逢冲刑破害则减力，逢官印生扶则名显四海。',
+    approvalStatus: 'approved',
+    approvedBy: '赵天佑师傅',
+    updatedAt: '2026-10-17'
+  },
+  {
+    id: 'kb_tujie_06',
+    bookTitle: '《图解八字》（子平八字资料.pdf）',
+    chapter: '卷二·第七章：十神心性与六亲配置',
+    sourcePage: 126,
+    ruleCategory: '十神篇',
+    ruleTitle: '十神正变与性格潜能全息映射',
+    content: '正官端庄正直守纪律，七杀机警刚毅善决断；正印仁慈博爱得庇护，偏印孤僻敏锐通玄学；食神温文儒雅重享受，伤官才华横溢善生财；正财勤俭守成得正禄，偏财豪爽慷慨善投机。四柱配合得宜，则性情纯正。',
+    approvalStatus: 'approved',
+    approvedBy: '赵天佑师傅',
+    updatedAt: '2026-10-17'
+  },
+  {
+    id: 'kb_tujie_07',
+    bookTitle: '《图解八字》（子平八字资料.pdf）',
+    chapter: '卷三·第八章：论富贵吉凶与格局神髓',
+    sourcePage: 146,
     ruleCategory: '格局篇',
-    ruleTitle: '正官格见伤官生财化解法则',
-    content: '正官怕见伤官，然若柱中财星通门户，伤官转而生财，财复生官，则伤官不但不伤官，反成生财之源，主其人聪颖多才，经商致富且有名位。',
+    ruleTitle: '伤官生财格与财气通门户致富机要',
+    content: '伤官本为泄身克官之神，然若四柱通财星，伤官转而化生财源，财复滋生官禄，形成「伤官生财格」。凡乙木生秋身弱，若得壬癸水印星透出护卫生身，火泄秀以生财，金生水以生木，先名后利，终成巨富商贾。',
     approvalStatus: 'approved',
     approvedBy: '赵天佑师傅',
-    updatedAt: '2025-05-15'
+    updatedAt: '2026-10-17'
   },
   {
-    id: 'kb_ziping_01',
-    bookTitle: '《子平真诠》',
-    chapter: '论用神配气候得失',
-    sourcePage: 45,
-    ruleCategory: '调候篇',
-    ruleTitle: '木生秋令调候水木生发',
-    content: '秋木凋零，金旺木绝。若见壬癸透干，绝处逢生，转衰为健。金生水，水生木，秋水通源，官印双清。',
+    id: 'kb_tujie_08',
+    bookTitle: '《图解八字》（子平八字资料.pdf）',
+    chapter: '卷三·第八章：论富贵吉凶与格局神髓',
+    sourcePage: 158,
+    ruleCategory: '格局篇',
+    ruleTitle: '官印相生与杀印相生权柄考辨',
+    content: '官旺印弱者，宜行印运以发身；官轻印重者，宜行官运以显职。申月乙木，庚辛金并透克身，全赖壬水正印润泽化煞生身，见午巳火食伤制金者为上等格局。以印化杀者文武兼备，于大机构或专业合规领域能独当一面。',
     approvalStatus: 'approved',
     approvedBy: '赵天佑师傅',
-    updatedAt: '2025-05-20'
+    updatedAt: '2026-10-17'
   },
   {
-    id: 'kb_pdf_source_01',
-    bookTitle: '《子平八字资料.pdf》',
-    chapter: '卷四·十神正变与财禄真诠',
-    sourcePage: 78,
+    id: 'kb_tujie_09',
+    bookTitle: '《图解八字》（子平八字资料.pdf）',
+    chapter: '卷三·第九章：论婚恋家庭与配偶宫位',
+    sourcePage: 182,
+    ruleCategory: '格局篇',
+    ruleTitle: '日支配偶宫坐食神之夫妻相处机要',
+    content: '日支为配偶之宫位。日坐食神且为喜用者，得贤淑才智超群之配偶；若身弱而日支食伤太旺者，易因要求严苛多疑而生波澜。调和之道唯在以正印生扶日元，夫妻彼此坦诚相待、同心协力。',
+    approvalStatus: 'approved',
+    approvedBy: '赵天佑师傅',
+    updatedAt: '2026-10-17'
+  },
+  {
+    id: 'kb_tujie_10',
+    bookTitle: '《图解八字》（子平八字资料.pdf）',
+    chapter: '卷三·第十章：论事业用神与行业五行适性',
+    sourcePage: 198,
     ruleCategory: '用神篇',
-    ruleTitle: '财官旺衰与伤官生财格权衡法则',
-    content: '凡乙木生秋，金旺木凋，若得壬癸透出，反败为功。见巳午火泄秀生财，名曰「伤官生财格」，身弱得印生者，先名后利，终成富室。',
+    ruleTitle: '五行用神喜忌与现代行业方位指引',
+    content: '命局以水木为用神者，宜投身文教、出版、绿色环保、水务物流、咨询咨询及跨国商贸；方位以北方（坎水）与东方（震木）最为得利。忌金土者，慎投重资产矿业、固定地产投机及高杠杆金融。',
     approvalStatus: 'approved',
     approvedBy: '赵天佑师傅',
-    updatedAt: '2025-06-01'
+    updatedAt: '2026-10-17'
   },
   {
-    id: 'kb_pdf_source_02',
-    bookTitle: '《子平八字资料.pdf》',
-    chapter: '卷三·官杀格取用与权柄考辨',
-    sourcePage: 114,
-    ruleCategory: '格局篇',
-    ruleTitle: '官旺印弱行运生发与事业晋升',
-    content: '官旺印弱者，宜行印运以发身；官轻印重者，宜行官运以显职。申月乙木，庚辛并透，全赖壬水润泽化煞，见火制者为上格。',
-    approvalStatus: 'approved',
-    approvedBy: '赵天佑师傅',
-    updatedAt: '2025-06-01'
-  },
-  {
-    id: 'kb_pdf_source_03',
-    bookTitle: '《子平八字资料.pdf》',
-    chapter: '卷五·配偶宫位与六亲合化章',
-    sourcePage: 142,
-    ruleCategory: '格局篇',
-    ruleTitle: '日支食神配偶才智与相处之道',
-    content: '日支坐食神者，得贤淑聪明之配偶；但须身健方能享福，身弱而食神太重者，反生多疑与挑剔。调和之道，唯重印绶生扶夫妻同心。',
-    approvalStatus: 'approved',
-    approvedBy: '赵天佑师傅',
-    updatedAt: '2025-06-05'
-  },
-  {
-    id: 'kb_pdf_source_04',
-    bookTitle: '《子平八字资料.pdf》',
-    chapter: '卷六·五行偏枯与脏腑调摄通考',
-    sourcePage: 189,
+    id: 'kb_tujie_11',
+    bookTitle: '《图解八字》（子平八字资料.pdf）',
+    chapter: '卷三·第十一章：论五行健康与脏腑调摄',
+    sourcePage: 212,
     ruleCategory: '调候篇',
-    ruleTitle: '木逢金克肝胆调摄与水润培根',
-    content: '木逢金克，肝胆先伤；火多木焚，阴血内耗。秋木凋零，急需玄水滋润培根。调神理气，当以静坐养神、养肝柔木为首务。健康建议仅作文化养生参考。',
+    ruleTitle: '木逢金克肝胆调摄与玄水滋润培根法则',
+    content: '木主肝胆经络，金主肺肠骨骼。秋木凋零逢金克制，肝胆易现虚耗疲劳；若火炎耗木，阴血亦虚。急宜玄水（壬癸水）滋润养木培根。日常宜静坐敛神、作息规律以柔养肝木。此项专作中国传统五行文化养生参考。',
     approvalStatus: 'approved',
     approvedBy: '赵天佑师傅',
-    updatedAt: '2025-06-05'
+    updatedAt: '2026-10-17'
   },
   {
-    id: 'kb_pdf_source_05',
-    bookTitle: '《子平八字资料.pdf》',
-    chapter: '卷七·十年大运换甲与用神行度',
-    sourcePage: 215,
+    id: 'kb_tujie_12',
+    bookTitle: '《图解八字》（子平八字资料.pdf）',
+    chapter: '卷三·第十二章：论十年大运换甲与用神行度',
+    sourcePage: 236,
     ruleCategory: '大运流年篇',
-    ruleTitle: '大运水木逢生与资产守成法',
-    content: '身弱逢生，如枯苗得雨，财星自然归我。大运行至水木之乡，乙木乘旺，财禄丰盈。然戒骄盈，见比劫者当广布善缘。',
+    ruleTitle: '十年大运干支分管与换甲交接守则',
+    content: '十年大运，前五年天干当政管事，后五年地支统摄气数。逢交运脱运（换甲之期），气机变迁动荡，不可盲目大额举债或草率变道。身弱逢生行水木大运者，如旱苗得雨，财禄守成丰厚。',
     approvalStatus: 'approved',
     approvedBy: '赵天佑师傅',
-    updatedAt: '2025-06-10'
+    updatedAt: '2026-10-17'
   },
   {
-    id: 'kb_pdf_source_06',
-    bookTitle: '《子平八字资料.pdf》',
-    chapter: '卷四·十二流月财禄行度断与五星定级法',
-    sourcePage: 138,
+    id: 'kb_tujie_13',
+    bookTitle: '《图解八字》（子平八字资料.pdf）',
+    chapter: '卷三·第十二章：论十二流月吉凶与五星定级法',
+    sourcePage: 252,
     ruleCategory: '大运流年篇',
     ruleTitle: '十二流月五星吉凶评定总规（宗师核准准则）',
-    content: '月令评级当以岁君与月令生克为据：五星（大吉）为用神得令且吉星高照；四星（吉）为干支相生得力；三星（平）为吉凶互见；二星（欠吉）为克耗交加；一星（忌）为冲克用神。凡未有确凿典籍对应之极端断语，须标注待宗师审核。',
+    content: '流月评级须综合岁君、流月月令与原局生克：五星（大吉）为用神得令且吉星扶持；四星（吉）为干支顺生无伤；三星（平）为吉凶互济稳扎稳打；二星（欠吉）为耗克较重需守慎；一星（忌）为冲克用神需防破耗。',
     approvalStatus: 'approved',
     approvedBy: '赵天佑师傅',
-    updatedAt: '2025-06-15'
+    updatedAt: '2026-10-17'
+  },
+  {
+    id: 'kb_tujie_14',
+    bookTitle: '《图解八字》（子平八字资料.pdf）',
+    chapter: '卷三·第十二章：岁运并临与天克地冲趋避法',
+    sourcePage: 268,
+    ruleCategory: '大运流年篇',
+    ruleTitle: '岁运并临与逢冲克关口修德趋避法则',
+    content: '经云：「岁运并临，吉凶由用神定夺」。若岁运并临为用神水木，反主添丁进禄、事业登峰；若为忌神，则需居安思危、谨言慎行，多行善举布施，以德化煞，方保家泰人安。',
+    approvalStatus: 'approved',
+    approvedBy: '赵天佑师傅',
+    updatedAt: '2026-10-17'
   },
   {
     id: 'kb_conflict_sample',
@@ -241,8 +301,8 @@ export const INITIAL_KNOWLEDGE_ENTRIES: KnowledgeEntry[] = [
     ruleTitle: '争议条目：日主无根必从财杀',
     content: '凡日主天干不得地，四柱财官旺盛者，一律论从格，不须看印星透干。',
     approvalStatus: 'conflict',
-    conflictNotes: '与《图解八字》及《子平真诠》正统旺衰法则冲突！陈美玲命盘印星透干有气，绝不可断为从格。宗师标注：驳回并警示。',
-    updatedAt: '2025-08-01'
+    conflictNotes: '与《图解八字》（子平八字资料.pdf）正统旺衰法则冲突！陈美玲命盘月干壬水正印通根透干有气，绝不可断为从格。赵天佑宗师标注：驳回并警示。',
+    updatedAt: '2026-10-17'
   },
   {
     id: 'kb_pending_sample',
@@ -253,7 +313,7 @@ export const INITIAL_KNOWLEDGE_ENTRIES: KnowledgeEntry[] = [
     ruleTitle: '待审核条目：大运地支重于天干之辨',
     content: '行运五年干、五年支之说不可泥执。当以天干管事五年，地支贯通十年统论，尤重地支引申化合之机。',
     approvalStatus: 'pending',
-    updatedAt: '2025-09-02'
+    updatedAt: '2026-10-17'
   }
 ];
 

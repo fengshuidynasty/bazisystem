@@ -29,7 +29,7 @@ export const KnowledgeBaseManager: React.FC = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   // Form state for adding new book entry
-  const [newBook, setNewBook] = useState('《图解八字》');
+  const [newBook, setNewBook] = useState('《图解八字》（子平八字资料.pdf）');
   const [newChapter, setNewChapter] = useState('');
   const [newPage, setNewPage] = useState<number>(1);
   const [newCategory, setNewCategory] = useState<KnowledgeEntry['ruleCategory']>('旺衰篇');
@@ -43,6 +43,7 @@ export const KnowledgeBaseManager: React.FC = () => {
     { id: '旺衰篇', label: '旺衰篇' },
     { id: '格局篇', label: '格局篇' },
     { id: '用神篇', label: '用神篇' },
+    { id: '十神篇', label: '十神篇' },
     { id: '调候篇', label: '调候篇' },
     { id: '大运流年篇', label: '大运流年篇' }
   ];
@@ -224,7 +225,7 @@ export const KnowledgeBaseManager: React.FC = () => {
                     {!isConflict && (
                       <button
                         onClick={() => {
-                          const note = prompt('请填写冲突原因 (例如: 与《子平真诠》旺衰定局法则相悖):');
+                          const note = prompt('请填写冲突原因 (例如: 与《图解八字》旺衰定局法则相悖):');
                           if (note) flagConflictKnowledgeEntry(entry.id, note);
                         }}
                         className="px-2.5 py-1 rounded bg-amber-600/20 text-amber-300 hover:bg-amber-600/40 border border-amber-500/30 transition"
@@ -278,11 +279,11 @@ export const KnowledgeBaseManager: React.FC = () => {
                     onChange={(e) => setNewBook(e.target.value)}
                     className="w-full bg-[#0E1A36] border border-[#1E325E] rounded-lg p-2 text-white text-xs"
                   >
-                    <option value="《图解八字》">《图解八字》</option>
-                    <option value="《子平真诠》">《子平真诠》</option>
+                    <option value="《图解八字》（子平八字资料.pdf）">《图解八字》（子平八字资料.pdf）</option>
                     <option value="《滴天髓阐微》">《滴天髓阐微》</option>
                     <option value="《穷通宝鉴》">《穷通宝鉴》</option>
                     <option value="《渊海子平》">《渊海子平》</option>
+                    <option value="《三命通会》">《三命通会》</option>
                   </select>
                 </div>
                 <div>
@@ -295,6 +296,7 @@ export const KnowledgeBaseManager: React.FC = () => {
                     <option value="旺衰篇">旺衰篇 (八分法)</option>
                     <option value="格局篇">格局篇</option>
                     <option value="用神篇">用神篇</option>
+                    <option value="十神篇">十神篇 (神煞纳音)</option>
                     <option value="调候篇">调候篇</option>
                     <option value="大运流年篇">大运流年篇</option>
                   </select>

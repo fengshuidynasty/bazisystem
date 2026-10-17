@@ -123,7 +123,7 @@ export interface BaZiChartResult {
 
 export interface KnowledgeEntry {
   id: string;
-  bookTitle: string; // e.g. 《图解八字》, 《子平真诠》
+  bookTitle: string; // e.g. 《图解八字》（子平八字资料.pdf）
   chapter: string;
   sourcePage: number;
   ruleCategory: '格局篇' | '旺衰篇' | '用神篇' | '十神篇' | '调候篇' | '大运流年篇';

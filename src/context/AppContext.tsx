@@ -413,7 +413,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       // Fallback deterministic interpretation derived directly from classical rules
       const fallbackDraft = {
         summary: `命主${targetClient.name}，生于${targetClient.birthDate}，日主为${chart.dayMaster}，五行属${chart.dayMasterElement}。八分辅助精算评定为${chart.strengthStatus}（同党${chart.eightPointSupportTotal}分 / 异党${chart.eightPointDrainTotal}分）。此命格以「${targetClient.usefulGods}」为用神相生，忌「${targetClient.unfavorableGods}」耗伐。`,
-        patternAnalysis: `成格为「${targetClient.patternName}」。经《图解八字》与《子平真诠》典籍校对，天透地藏，官印相生，虽身弱但印绶有力，具有大器晚成、化险为夷之命局特质。`,
+        patternAnalysis: `成格为「${targetClient.patternName}」。经《图解八字》（子平八字资料.pdf）典籍校对，天透地藏，官印相生，虽身弱但印绶有力，具有大器晚成、化险为夷之命局特质。`,
         personalityStrengths: `为人沉着内敛，悟性极高，有宏观战略思维与商业敏锐度。擅长跨部门协调与资源整合。`,
         careerAndWealth: `正偏财皆有依托，26-36岁行运生身，求财如春雨润物；2025乙巳年、2026丙午年流年火旺生土再转金水，投资与事业拓展机缘丰厚。`,
         romanceAndMarriage: `夫妻宫气场祥和，偶有口角无碍大局。宜互相尊重事业发展，相互成就。`,
