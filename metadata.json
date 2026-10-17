@@ -1,0 +1,6 @@
+{
+  "name": "Feng Shui Dynasty BaZi Analysis System (天佑风水子平八字命理系统)",
+  "description": "趙天佑 MASTER JOE CHEW AI 智能子平八字命理系统 - 旺衰派八分辅助精算、大运流年与AI命理报告研判系统",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

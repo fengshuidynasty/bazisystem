@@ -1,0 +1,97 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isMaster() {
+      return isSignedIn() && (
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'master'
+      );
+    }
+
+    function isPractitioner() {
+      return isSignedIn() && (
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['master', 'practitioner']
+      );
+    }
+
+    // Users Collection
+    match /users/{userId} {
+      allow get: if isSignedIn() && (request.auth.uid == userId || isMaster());
+      allow list: if isMaster();
+      allow create: if isSignedIn() && request.auth.uid == userId && isValidId(userId);
+      allow update: if isSignedIn() && (isMaster() || (request.auth.uid == userId && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role'])));
+      allow delete: if isMaster();
+    }
+
+    // Clients Collection
+    match /clients/{clientId} {
+      allow get: if isSignedIn() && (
+        isMaster() ||
+        (isPractitioner() && (resource.data.assignedPractitionerId == request.auth.uid || resource.data.userId == request.auth.uid)) ||
+        resource.data.userId == request.auth.uid
+      );
+      allow list: if isSignedIn() && (
+        isMaster() ||
+        isPractitioner() ||
+        resource.data.userId == request.auth.uid
+      );
+      allow create: if isSignedIn() && isValidId(clientId) && (
+        isPractitioner() || request.resource.data.userId == request.auth.uid
+      );
+      allow update: if isSignedIn() && (
+        isMaster() ||
+        (isPractitioner() && (resource.data.assignedPractitionerId == request.auth.uid || resource.data.userId == request.auth.uid)) ||
+        (resource.data.userId == request.auth.uid && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['assignedPractitionerId']))
+      );
+      allow delete: if isMaster();
+    }
+
+    // Charts Collection (Deterministic calculations)
+    match /charts/{chartId} {
+      allow read: if isSignedIn();
+      allow write: if isPractitioner();
+    }
+
+    // Knowledge Base Collection
+    match /knowledgeBase/{entryId} {
+      allow read: if isPractitioner();
+      allow write: if isMaster();
+    }
+
+    // Reports Collection
+    match /reports/{reportId} {
+      allow get: if isSignedIn() && (
+        isMaster() ||
+        isPractitioner() ||
+        (resource.data.paymentStatus == 'paid' && resource.data.approvalStatus == 'approved')
+      );
+      allow list: if isSignedIn();
+      allow create: if isPractitioner();
+      allow update: if isMaster() || (isPractitioner() && resource.data.approvalStatus != 'approved');
+      allow delete: if isMaster();
+    }
+
+    // Orders Collection
+    match /orders/{orderId} {
+      allow get: if isSignedIn() && (isMaster() || resource.data.userId == request.auth.uid);
+      allow list: if isSignedIn() && (isMaster() || resource.data.userId == request.auth.uid);
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+      allow update: if isMaster();
+      allow delete: if false;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>趙天佑 MASTER JOE CHEW AI 智能子平八字命理系统</title>
+    <meta name="description" content="天佑风水子平八字命理系统 - 专业子平八字命理排盘、旺衰派八分辅助精算、大运流年与AI命理报告研判系统" />
+    <meta property="og:title" content="趙天佑 MASTER JOE CHEW AI 智能子平八字命理系统" />
+    <meta property="og:description" content="天佑风水子平八字命理系统 - 专业子平八字命理排盘、旺衰派八分辅助精算、大运流年与AI命理报告研判系统" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+      // Gracefully handle preview sandbox WebSocket connection interruptions
+      window.addEventListener('unhandledrejection', function(event) {
+        if (event && event.reason) {
+          var msg = (typeof event.reason.message === 'string' ? event.reason.message : '') +
+                    (typeof event.reason === 'string' ? event.reason : '') +
+                    (event.reason.toString ? event.reason.toString() : '');
+          if (msg.indexOf('WebSocket') !== -1) {
+            event.preventDefault();
+          }
+        }
+      });
+    </script>
+  </head>
+  <body class="bg-[#060B17] text-slate-200 antialiased selection:bg-blue-600 selection:text-white min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

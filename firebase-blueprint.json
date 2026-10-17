@@ -1,0 +1,122 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with role-based access control (Master, Practitioner, Client)",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["master", "practitioner", "client"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Client": {
+      "title": "Client",
+      "description": "Client profile containing natal birth data and consultation status",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "gender": { "type": "string", "enum": ["female", "male"] },
+        "birthDate": { "type": "string" },
+        "birthTime": { "type": "string" },
+        "birthLocation": { "type": "string" },
+        "timezone": { "type": "string" },
+        "hasGeneratedReport": { "type": "boolean" },
+        "assignedPractitionerId": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "gender", "birthDate", "birthTime"]
+    },
+    "Chart": {
+      "title": "Chart",
+      "description": "Deterministic Zi Ping BaZi calculation record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "clientId": { "type": "string" },
+        "dayMaster": { "type": "string" },
+        "pattern": { "type": "string" },
+        "eightPointScore": { "type": "number" },
+        "strength": { "type": "string" },
+        "calculatedAt": { "type": "string" }
+      },
+      "required": ["id", "clientId", "dayMaster", "eightPointScore"]
+    },
+    "KnowledgeEntry": {
+      "title": "KnowledgeEntry",
+      "description": "Classical BaZi texts and approved rules for AI grounding",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "bookTitle": { "type": "string" },
+        "chapter": { "type": "string" },
+        "ruleCategory": { "type": "string" },
+        "content": { "type": "string" },
+        "approvalStatus": { "type": "string", "enum": ["approved", "pending", "conflict", "rejected"] },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "bookTitle", "content", "approvalStatus"]
+    },
+    "Report": {
+      "title": "Report",
+      "description": "Comprehensive BaZi analysis report with AI draft and Master approval",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "clientId": { "type": "string" },
+        "reportType": { "type": "string" },
+        "priceMYR": { "type": "number" },
+        "paymentStatus": { "type": "string", "enum": ["unpaid", "paid", "refunded"] },
+        "approvalStatus": { "type": "string", "enum": ["draft", "pending_approval", "approved", "rejected"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "clientId", "paymentStatus", "approvalStatus"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "One-time MYR payment record for report unlocking",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "clientId": { "type": "string" },
+        "amountMYR": { "type": "number" },
+        "paymentMethod": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "success", "failed", "refunded", "cancelled"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "amountMYR", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User directory and role assignments"
+    },
+    "/clients/{clientId}": {
+      "schema": { "$ref": "#/entities/Client" },
+      "description": "Client demographic and birth records"
+    },
+    "/charts/{chartId}": {
+      "schema": { "$ref": "#/entities/Chart" },
+      "description": "Deterministic BaZi calculations"
+    },
+    "/knowledgeBase/{entryId}": {
+      "schema": { "$ref": "#/entities/KnowledgeEntry" },
+      "description": "Approved knowledge base rules and texts"
+    },
+    "/reports/{reportId}": {
+      "schema": { "$ref": "#/entities/Report" },
+      "description": "Paid reports and master review states"
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "One-time MYR payment records"
+    }
+  }
+}
