@@ -64,7 +64,7 @@ ${approvedKnowledgeBase || '《子平八字资料.pdf》卷四·十神正变与�
 请为以下客户生成权威命理草案：
 客户姓名：${client.name}
 性别：${client.gender === 'female' ? '坤造 (女)' : '乾造 (男)'}
-出生资料：公历 ${client.birthDate} ${client.birthTime}，出生地 ${client.birthLocation}，真太阳时 ${client.trueSolarTime}
+出生资料：公历 ${client.birthDate} ${client.birthTime}，出生地 ${client.birthLocation}
 四柱原局：
 - 时柱：${chart.hour}
 - 日柱：${chart.day} (命主元神：${chart.dayMaster})

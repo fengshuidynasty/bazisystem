@@ -72,12 +72,8 @@ export const ClientInfoCard: React.FC = () => {
         </div>
       </div>
 
-      {/* Solar Time and Solar Term calculation box */}
-      <div className="mt-4 p-2.5 rounded-xl bg-[#081023] border border-[#16274B] text-[11px] space-y-1">
-        <div className="text-slate-400 flex justify-between">
-          <span>真太阳时：</span>
-          <span className="text-blue-300 font-mono font-medium">{activeClient.trueSolarTime}</span>
-        </div>
+      {/* Solar Term calculation box */}
+      <div className="mt-4 p-2.5 rounded-xl bg-[#081023] border border-[#16274B] text-[11px]">
         <div className="text-slate-400 flex justify-between">
           <span>节气令干：</span>
           <span className="text-slate-200">{activeClient.solarTermDayInfo}</span>
