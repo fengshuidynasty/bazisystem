@@ -10,8 +10,26 @@ import {
   Award,
   AlertTriangle,
   Send,
-  MessageSquare
+  MessageSquare,
+  Star,
+  BookOpen,
+  Coins,
+  Briefcase,
+  Heart,
+  Home,
+  Activity,
+  Calendar,
+  Clock,
+  Compass
 } from 'lucide-react';
+import {
+  getNatalDeepAnalysis,
+  getLuckPillarDeepAnalysis,
+  getAnnualDeepAnalysis,
+  getTwelveMonthlyFortunes,
+  getStarLabel
+} from '../engine/deepBaziAnalysis';
+import { CategoryKey, StarRating } from '../types';
 
 export const ReportViewModal: React.FC = () => {
   const {
@@ -28,8 +46,16 @@ export const ReportViewModal: React.FC = () => {
   const [masterNote, setMasterNote] = useState('');
   const [rejectFeedback, setRejectFeedback] = useState('');
   const [isRejecting, setIsRejecting] = useState(false);
+  const [activeAppendixTab, setActiveAppendixTab] = useState<'all' | 'natal' | 'dayun' | 'annual' | 'monthly'>('all');
 
   if (!isReportModalOpen || !selectedReportDoc) return null;
+
+  const currentLuckPillar =
+    chartResult.luckPillars.find(p => p.isCurrent) || chartResult.luckPillars[2] || chartResult.luckPillars[0];
+  const natalAnalyses = getNatalDeepAnalysis(activeClient, chartResult);
+  const luckAnalyses = getLuckPillarDeepAnalysis(activeClient, chartResult, currentLuckPillar);
+  const annualAnalyses = getAnnualDeepAnalysis(activeClient, chartResult, 2025, currentLuckPillar);
+  const monthlyFortunes = getTwelveMonthlyFortunes(activeClient, chartResult, 2025);
 
   const isApproved = selectedReportDoc.approvalStatus === 'approved';
   const isMaster = currentUser?.role === 'master';
@@ -355,6 +381,328 @@ export const ReportViewModal: React.FC = () => {
             <p className="text-xs text-slate-300 print:text-slate-800 leading-relaxed indent-6">
               {aiDraftContent.remedyAndFengShui}
             </p>
+          </div>
+
+          {/* Section 8: Five Core BaZi Categories Across Four Levels */}
+          <div className="space-y-5 pt-4 border-t border-[#18284C] print:border-slate-300">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h3 className="text-sm font-bold text-amber-300 print:text-amber-800 flex items-center gap-2">
+                  <span className="w-1.5 h-4 bg-amber-400 rounded-sm" />
+                  八、五维全息深度研判附录 (本命 · 大运 · 流年 · 十二流月)
+                </h3>
+                <p className="text-[11px] text-slate-400 print:text-slate-600 mt-0.5">
+                  严密覆盖财富、事业、感情、家庭、健康五大核心维度，六项要素与《子平八字资料.pdf》出处完全核准对齐。
+                </p>
+              </div>
+
+              {/* Screen Tab Switcher */}
+              <div className="no-print flex flex-wrap items-center gap-1 bg-[#091226] p-1 rounded-xl border border-[#16274B] text-[11px]">
+                <button
+                  onClick={() => setActiveAppendixTab('all')}
+                  className={`px-2.5 py-1 rounded-lg transition font-medium ${
+                    activeAppendixTab === 'all'
+                      ? 'bg-blue-600 text-white'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  全部层级
+                </button>
+                <button
+                  onClick={() => setActiveAppendixTab('natal')}
+                  className={`px-2.5 py-1 rounded-lg transition font-medium ${
+                    activeAppendixTab === 'natal'
+                      ? 'bg-blue-600 text-white'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  本命原局
+                </button>
+                <button
+                  onClick={() => setActiveAppendixTab('dayun')}
+                  className={`px-2.5 py-1 rounded-lg transition font-medium ${
+                    activeAppendixTab === 'dayun'
+                      ? 'bg-blue-600 text-white'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  现行大运
+                </button>
+                <button
+                  onClick={() => setActiveAppendixTab('annual')}
+                  className={`px-2.5 py-1 rounded-lg transition font-medium ${
+                    activeAppendixTab === 'annual'
+                      ? 'bg-blue-600 text-white'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  2025流年
+                </button>
+                <button
+                  onClick={() => setActiveAppendixTab('monthly')}
+                  className={`px-2.5 py-1 rounded-lg transition font-medium ${
+                    activeAppendixTab === 'monthly'
+                      ? 'bg-blue-600 text-white'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  十二流月
+                </button>
+              </div>
+            </div>
+
+            {/* Level 1: Natal Chart 5 Categories */}
+            {(activeAppendixTab === 'all' || activeAppendixTab === 'natal') && (
+              <div className="space-y-3 p-4 rounded-xl bg-[#091226] border border-[#182B54] print:bg-slate-50 print:border-slate-300">
+                <div className="flex items-center justify-between pb-2 border-b border-[#142343] print:border-slate-300">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-amber-400" />
+                    <h4 className="text-xs font-bold text-white print:text-black">
+                      【第一层级 · 本命原局五维深度研判】
+                    </h4>
+                  </div>
+                  <span className="text-[10px] text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 print:border-amber-700 print:text-amber-800">
+                    终身基调 · 原局定论
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                  {(['wealth', 'career', 'relationship', 'family', 'health'] as CategoryKey[]).map(
+                    (catKey) => {
+                      const item = natalAnalyses[catKey];
+                      return (
+                        <div
+                          key={catKey}
+                          className="p-3 rounded-lg bg-[#070D1D] border border-[#16274B] print:bg-white print:border-slate-200 space-y-2"
+                        >
+                          <div className="flex items-center justify-between font-bold text-amber-300 print:text-amber-800">
+                            <span>{item.categoryNameZh}</span>
+                            <span className="text-[10px] text-slate-500 font-sans">
+                              {item.categoryNameEn}
+                            </span>
+                          </div>
+                          <div className="text-[11px] text-slate-300 print:text-slate-800 leading-relaxed">
+                            <span className="text-amber-400 print:text-amber-700 font-medium">【依据】</span>
+                            {item.baziEvidence}
+                          </div>
+                          <div className="text-[11px] text-slate-300 print:text-slate-800 leading-relaxed">
+                            <span className="text-blue-400 print:text-blue-700 font-medium">【推演】</span>
+                            {item.interpretation}
+                          </div>
+                          <div className="p-2 rounded bg-amber-950/20 border border-amber-500/20 text-[10px] text-amber-200 print:bg-amber-50 print:border-amber-200 print:text-amber-900">
+                            <div className="font-semibold flex items-center gap-1">
+                              <BookOpen className="w-3 h-3 text-amber-400" />
+                              {item.pdfKnowledgeReference.source} · {item.pdfKnowledgeReference.chapter} (第{item.pdfKnowledgeReference.page}页)
+                            </div>
+                            <p className="mt-0.5 italic text-slate-300 print:text-slate-700">
+                              “{item.pdfKnowledgeReference.quote}”
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    }
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Level 2: Luck Pillar 5 Categories */}
+            {(activeAppendixTab === 'all' || activeAppendixTab === 'dayun') && (
+              <div className="space-y-3 p-4 rounded-xl bg-[#091226] border border-[#182B54] print:bg-slate-50 print:border-slate-300">
+                <div className="flex items-center justify-between pb-2 border-b border-[#142343] print:border-slate-300">
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-cyan-400" />
+                    <h4 className="text-xs font-bold text-white print:text-black">
+                      【第二层级 · 现行十年大运五维推演】
+                    </h4>
+                  </div>
+                  <span className="text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20 print:border-blue-700 print:text-blue-800">
+                    现行大运：{currentLuckPillar.ageStart}-{currentLuckPillar.ageEnd}岁【{currentLuckPillar.stem}{currentLuckPillar.branch}】
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                  {(['wealth', 'career', 'relationship', 'family', 'health'] as CategoryKey[]).map(
+                    (catKey) => {
+                      const item = luckAnalyses[catKey];
+                      return (
+                        <div
+                          key={catKey}
+                          className="p-3 rounded-lg bg-[#070D1D] border border-[#16274B] print:bg-white print:border-slate-200 space-y-2"
+                        >
+                          <div className="flex items-center justify-between font-bold text-cyan-300 print:text-blue-800">
+                            <span>{item.categoryNameZh}</span>
+                            <span className="text-[10px] text-slate-500 font-sans">
+                              {item.categoryNameEn}
+                            </span>
+                          </div>
+                          <div className="text-[11px] text-slate-300 print:text-slate-800 leading-relaxed">
+                            <span className="text-cyan-400 print:text-blue-700 font-medium">【交感】</span>
+                            {item.baziEvidence}
+                          </div>
+                          <div className="text-[11px] text-slate-300 print:text-slate-800 leading-relaxed">
+                            <span className="text-slate-200 print:text-slate-800 font-medium">【十年推演】</span>
+                            {item.interpretation}
+                          </div>
+                          <div className="p-2 rounded bg-blue-950/20 border border-blue-500/20 text-[10px] text-cyan-200 print:bg-blue-50 print:border-blue-200 print:text-blue-900">
+                            <div className="font-semibold flex items-center gap-1">
+                              <BookOpen className="w-3 h-3 text-cyan-400" />
+                              {item.pdfKnowledgeReference.source} · {item.pdfKnowledgeReference.chapter} (第{item.pdfKnowledgeReference.page}页)
+                            </div>
+                            <p className="mt-0.5 italic text-slate-300 print:text-slate-700">
+                              “{item.pdfKnowledgeReference.quote}”
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    }
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Level 3: Annual Fortune 5 Categories */}
+            {(activeAppendixTab === 'all' || activeAppendixTab === 'annual') && (
+              <div className="space-y-3 p-4 rounded-xl bg-[#091226] border border-[#182B54] print:bg-slate-50 print:border-slate-300">
+                <div className="flex items-center justify-between pb-2 border-b border-[#142343] print:border-slate-300">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-emerald-400" />
+                    <h4 className="text-xs font-bold text-white print:text-black">
+                      【第三层级 · 2025乙巳流年五维深度研判】
+                    </h4>
+                  </div>
+                  <span className="text-[10px] text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 print:border-emerald-700 print:text-emerald-800">
+                    岁运并论 · 2025乙巳年
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                  {(['wealth', 'career', 'relationship', 'family', 'health'] as CategoryKey[]).map(
+                    (catKey) => {
+                      const item = annualAnalyses[catKey];
+                      return (
+                        <div
+                          key={catKey}
+                          className="p-3 rounded-lg bg-[#070D1D] border border-[#16274B] print:bg-white print:border-slate-200 space-y-2"
+                        >
+                          <div className="flex items-center justify-between font-bold text-emerald-300 print:text-emerald-800">
+                            <span>{item.categoryNameZh}</span>
+                            <span className="text-[10px] text-slate-500 font-sans">
+                              {item.categoryNameEn}
+                            </span>
+                          </div>
+                          <div className="text-[11px] text-slate-300 print:text-slate-800 leading-relaxed">
+                            <span className="text-emerald-400 print:text-emerald-700 font-medium">【流年引动】</span>
+                            {item.baziEvidence}
+                          </div>
+                          <div className="text-[11px] text-slate-300 print:text-slate-800 leading-relaxed">
+                            <span className="text-slate-200 print:text-slate-800 font-medium">【岁运研判】</span>
+                            {item.interpretation}
+                          </div>
+                          <div className="p-2 rounded bg-emerald-950/20 border border-emerald-500/20 text-[10px] text-emerald-200 print:bg-emerald-50 print:border-emerald-200 print:text-emerald-900">
+                            <div className="font-semibold flex items-center gap-1">
+                              <BookOpen className="w-3 h-3 text-emerald-400" />
+                              {item.pdfKnowledgeReference.source} · {item.pdfKnowledgeReference.chapter} (第{item.pdfKnowledgeReference.page}页)
+                            </div>
+                            <p className="mt-0.5 italic text-slate-300 print:text-slate-700">
+                              “{item.pdfKnowledgeReference.quote}”
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    }
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Level 4: Twelve Monthly Fortune Matrix & Ratings */}
+            {(activeAppendixTab === 'all' || activeAppendixTab === 'monthly') && (
+              <div className="space-y-3 p-4 rounded-xl bg-[#091226] border border-[#182B54] print:bg-slate-50 print:border-slate-300">
+                <div className="flex items-center justify-between pb-2 border-b border-[#142343] print:border-slate-300">
+                  <div className="flex items-center gap-2">
+                    <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+                    <h4 className="text-xs font-bold text-white print:text-black">
+                      【第四层级 · 2025乙巳流年十二流月五星精算总表】
+                    </h4>
+                  </div>
+                  <span className="text-[10px] text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 print:border-amber-700 print:text-amber-800">
+                    24节气交接 · 五维评分
+                  </span>
+                </div>
+
+                <div className="overflow-x-auto">
+                  <table className="w-full text-[11px] text-left border-collapse border border-[#16274B] print:border-slate-300">
+                    <thead>
+                      <tr className="bg-[#0A1329] print:bg-slate-100 text-slate-300 print:text-slate-800 border-b border-[#16274B] print:border-slate-300">
+                        <th className="p-2 border-r border-[#16274B] print:border-slate-300">月份</th>
+                        <th className="p-2 border-r border-[#16274B] print:border-slate-300">干支</th>
+                        <th className="p-2 border-r border-[#16274B] print:border-slate-300">节气</th>
+                        <th className="p-2 text-center border-r border-[#16274B] print:border-slate-300">综合</th>
+                        <th className="p-2 text-center border-r border-[#16274B] print:border-slate-300">财</th>
+                        <th className="p-2 text-center border-r border-[#16274B] print:border-slate-300">官</th>
+                        <th className="p-2 text-center border-r border-[#16274B] print:border-slate-300">情</th>
+                        <th className="p-2 text-center border-r border-[#16274B] print:border-slate-300">宅</th>
+                        <th className="p-2 text-center border-r border-[#16274B] print:border-slate-300">身</th>
+                        <th className="p-2">核心月令警示与用神调和</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#142343] print:divide-slate-200">
+                      {monthlyFortunes.map((m) => (
+                        <tr
+                          key={m.month}
+                          className={`${
+                            m.overallRating === 5
+                              ? 'bg-amber-500/10 print:bg-amber-50/60 font-semibold'
+                              : 'hover:bg-slate-900/40'
+                          }`}
+                        >
+                          <td className="p-2 border-r border-[#16274B] print:border-slate-300 text-cyan-300 print:text-blue-700">
+                            {m.monthName}
+                          </td>
+                          <td className="p-2 border-r border-[#16274B] print:border-slate-300 font-bold text-white print:text-slate-900">
+                            {m.ganZhi}
+                          </td>
+                          <td className="p-2 border-r border-[#16274B] print:border-slate-300 text-slate-400 print:text-slate-600">
+                            {m.solarTerm}
+                          </td>
+                          <td className="p-2 text-center border-r border-[#16274B] print:border-slate-300">
+                            <span className="text-amber-400 print:text-amber-800 font-bold">
+                              {m.overallRating}星
+                            </span>
+                          </td>
+                          <td className="p-2 text-center border-r border-[#16274B] print:border-slate-300 text-amber-300 print:text-amber-700">
+                            {m.categories.wealth.rating}★
+                          </td>
+                          <td className="p-2 text-center border-r border-[#16274B] print:border-slate-300 text-blue-300 print:text-blue-700">
+                            {m.categories.career.rating}★
+                          </td>
+                          <td className="p-2 text-center border-r border-[#16274B] print:border-slate-300 text-pink-300 print:text-pink-700">
+                            {m.categories.relationship.rating}★
+                          </td>
+                          <td className="p-2 text-center border-r border-[#16274B] print:border-slate-300 text-indigo-300 print:text-indigo-700">
+                            {m.categories.family.rating}★
+                          </td>
+                          <td className="p-2 text-center border-r border-[#16274B] print:border-slate-300 text-emerald-300 print:text-emerald-700">
+                            {m.categories.health.rating}★
+                          </td>
+                          <td className="p-2 text-slate-300 print:text-slate-800 text-[10px]">
+                            <div>
+                              <span className="text-rose-400 print:text-rose-700 font-medium">【戒备】</span>
+                              {m.mostImportantCaution}
+                            </div>
+                            <div className="text-emerald-400 print:text-emerald-700 mt-0.5">
+                              <span>【用神】</span>
+                              {m.personalizedGuidance.enhancementTip}
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Master Final Annotation Box */}
