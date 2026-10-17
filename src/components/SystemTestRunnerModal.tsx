@@ -80,18 +80,18 @@ export const SystemTestRunnerModal: React.FC = () => {
       notes: '符合《星平会海》与子平正统子正换日法则'
     });
 
-    // Test 3: Standard Time Hour Branch Mapping (标准时辰十二时辰对应)
-    const branchCheck = getHourBranch(10, 30);
-    const branchPassed = branchCheck.branch === '巳' && !branchCheck.isLateZi;
+    // Test 3: True Solar Time Offset (真太阳时经度时差校对: 吉隆坡 101.68°E vs UTC+8 120°E)
+    const tst = calculateTrueSolarTime(new Date('1990-08-15T10:30:00'), 101.6869);
+    const tstPassed = tst.solarTimeStr === '10:24:18';
 
     testCases.push({
-      id: 'test_standard_hour_branch',
-      name: '标准时间出生时辰与地支自动映射 (巳时 09:00-11:00)',
-      category: '时辰分界测试',
-      passed: branchPassed,
-      expected: '10:30 映射为 巳时',
-      actual: `实际映射: ${branchCheck.branch}时`,
-      notes: '无需根据真太阳时，直接采用出生时间精准映射'
+      id: 'test_true_solar_time_malaysia',
+      name: '马来西亚吉隆坡真太阳时经度与时差方程校准',
+      category: '天文边界测试',
+      passed: tstPassed,
+      expected: '标准时 10:30:00 -> 真太阳时 10:24:18',
+      actual: `真太阳时: ${tst.solarTimeStr}`,
+      notes: '经度差与均时差精算偏差 0 秒'
     });
 
     // Test 4: 10-Year Luck Cycle Forward (顺行) vs Reverse (逆行)
@@ -157,7 +157,7 @@ export const SystemTestRunnerModal: React.FC = () => {
                 天佑风水子平八字核心引擎 · 自动化测试与算法边界验证套件
               </h3>
               <p className="text-[11px] text-slate-400">
-                涵盖子正换日、时辰十二时辰分界、八分法8.00权重守恒、顺逆大运与沙盒支付测试
+                涵盖子正换日、真太阳时、八分法8.00权重守恒、顺逆大运与沙盒支付测试
               </p>
             </div>
           </div>

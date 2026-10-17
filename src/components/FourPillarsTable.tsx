@@ -87,6 +87,9 @@ export const FourPillarsTable: React.FC = () => {
         <div className="flex items-center justify-between pb-3 border-b border-[#142343]">
           <div className="flex items-center gap-2">
             <h3 className="text-xs font-bold text-white tracking-wide">四柱八字命盘</h3>
+            <span className="text-[10px] bg-blue-500/10 text-blue-400 px-1.5 py-0.5 rounded border border-blue-500/20">
+              子平真诠法则
+            </span>
           </div>
 
           {/* Toggle buttons */}

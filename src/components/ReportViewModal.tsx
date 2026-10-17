@@ -213,9 +213,9 @@ export const ReportViewModal: React.FC = () => {
               </span>
             </div>
             <div>
-              <span className="text-slate-400 print:text-slate-600">出生时辰：</span>
+              <span className="text-slate-400 print:text-slate-600">真太阳时：</span>
               <span className="font-bold text-blue-300 print:text-blue-700 ml-1">
-                {chartResult.hourPillar.branch}时 ({activeClient.birthTime})
+                {activeClient.trueSolarTime}
               </span>
             </div>
           </div>

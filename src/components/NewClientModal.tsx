@@ -68,7 +68,7 @@ export const NewClientModal: React.FC = () => {
         <div className="flex items-center justify-between pb-3 border-b border-[#142343]">
           <h3 className="text-sm font-bold text-white flex items-center gap-2">
             <UserPlus className="w-4 h-4 text-blue-400" />
-            新建客户出生资料与八字排盘
+            新建客户出生资料与精准真太阳时排盘
           </h3>
           <button
             onClick={() => setIsNewClientModalOpen(false)}
@@ -160,20 +160,28 @@ export const NewClientModal: React.FC = () => {
             </div>
           </div>
 
-          {/* Time & Branch Verification Box */}
+          {/* Real-time Astronomical Calculation Preview Box */}
           <div className="p-3 bg-[#070D1D] border border-blue-900/40 rounded-xl space-y-2">
             <div className="text-[11px] font-semibold text-blue-300 flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
-              出生时辰与子正换日校对：
+              经纬度真太阳时与子时分界校对：
             </div>
             <div className="grid grid-cols-2 gap-2 text-[11px] text-slate-400">
               <div>
-                <span>出生时间：</span>
-                <span className="text-slate-200 font-mono">{birthTime}</span>
+                <span>标准经度：</span>
+                <span className="text-slate-200 font-mono">120.00°E (基准)</span>
               </div>
               <div>
-                <span>对应时柱地支：</span>
-                <span className="text-amber-300 font-bold ml-1">{branchInfo.branch}时</span>
+                <span>当地经度：</span>
+                <span className="text-slate-200 font-mono">{coords.lng}°E</span>
+              </div>
+              <div>
+                <span>真太阳时：</span>
+                <span className="text-cyan-300 font-mono font-bold">{solarTimeResult.solarTimeStr}</span>
+              </div>
+              <div>
+                <span>对应时支：</span>
+                <span className="text-amber-300 font-bold">{branchInfo.branch}时</span>
                 {branchInfo.isLateZi && (
                   <span className="text-rose-400 text-[10px] ml-1">(夜子时，00:00换日)</span>
                 )}

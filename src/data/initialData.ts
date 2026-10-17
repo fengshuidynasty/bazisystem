@@ -267,7 +267,7 @@ export const REPORT_PRODUCTS: ReportProduct[] = [
     features: [
       '基础四柱八字排盘',
       '基础五行比例查看',
-      '出生时辰校验',
+      '真太阳时校准',
       '解锁前20%运势简析'
     ]
   },

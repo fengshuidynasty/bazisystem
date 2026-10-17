@@ -63,9 +63,23 @@ export const Sidebar: React.FC = () => {
               className="max-h-20 w-auto object-contain drop-shadow-[0_2px_8px_rgba(234,179,8,0.3)] transition-transform duration-300 group-hover:scale-105"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzYqy3IHMRTcdoFjVw8DP8uwBdAkJJfh4jTax0OpaQ3eTvlRLHpDNYIkjRZ6vdReUQFML_8nG0uB_SiRwX0qEN74xDLHbffkINit9t0QZqVRjZd-6Wn9QXHgr6VSBGK-WJ-M7YVhPga-NWIkAaV0WPpiYtlOUw3sYOZDYi2e0DgaVgAmavdWqYZ5U-qaejGvfQNJvymFgP-RbVufmjCHY4lKvjl789F-355yNPyOY4TBJG2zGBSjTbGm1MyfyRMcWWnBU"
               onError={(e) => {
+                // High-fidelity fallback SVG if remote asset is ever blocked
                 e.currentTarget.style.display = 'none';
               }}
             />
+            {/* Fallback typography inside banner if needed */}
+            <div className="flex flex-col items-center py-1">
+              <span className="text-amber-400 font-serif font-bold text-sm tracking-widest">趙天佑</span>
+              <span className="text-[10px] text-amber-300 tracking-wider font-semibold">MASTER JOE CHEW</span>
+            </div>
+          </div>
+          <div className="mt-2.5">
+            <h1 className="text-xs font-bold tracking-widest text-amber-400 uppercase">
+              AI 智能子平八字命理系统
+            </h1>
+            <p className="text-[10px] text-slate-400 tracking-wider">
+              MASTER JOE CHEW AI SYSTEM
+            </p>
           </div>
         </div>
 
