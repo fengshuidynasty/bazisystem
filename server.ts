@@ -12,7 +12,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const httpServer = http.createServer(app);
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 app.use(express.json());
 
@@ -161,6 +161,12 @@ async function startServer() {
       server: {
         middlewareMode: true,
         hmr: isHmrDisabled
+          ? false
+          : {
+              server: httpServer,
+              clientPort: 443,
+            },
+        ws: isHmrDisabled
           ? false
           : {
               server: httpServer,
